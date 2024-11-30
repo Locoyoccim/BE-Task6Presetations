@@ -36,7 +36,7 @@ def create_presentation(request):
     if not title or not nickname:
         return JsonResponse({'error': 'Title and nickname are required'}, status=400)
 
-    user = User.objects.create(nickname=nickname)
+    user = User.objects.get(nickname=nickname)
     presentation = Presentation.objects.create(title=title, creator=user)
     PresentationUser.objects.create(user=user, presentation=presentation, role='CREATOR')
 
